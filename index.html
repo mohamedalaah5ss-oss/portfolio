@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>محمد علاء حسين | Data Engineering Portfolio</title>
+  <meta name="description" content="محمد علاء حسين — طالب هندسة اتصالات وإلكترونيات — Data Engineering (DEPI - وزارة الاتصالات) — Python / SQL / ETL" />
+
+  <!-- Tailwind CDN (بدون تثبيت) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root{
+      --bg: #060a0f;
+      --panel: #0b111a;
+      --text: #e6f0ff;
+      --muted: rgba(230,240,255,.68);
+      --neon: #18e7d7;
+      --neon2:#22c7ff;
+      --border: rgba(255,255,255,.08);
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 22px;
+    }
+
+    html, body { height:100%; background: var(--bg); color: var(--text); scroll-behavior:smooth; }
+
+    /* Background: grid + glow + vignette */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(900px 520px at 18% 18%, rgba(24,231,215,.12), transparent 60%),
+        radial-gradient(780px 460px at 78% 28%, rgba(34,199,255,.10), transparent 60%),
+        radial-gradient(900px 560px at 50% 96%, rgba(0,0,0,.60), transparent 60%),
+        linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
+      background-size: auto, auto, auto, 48px 48px, 48px 48px;
+      opacity: 1;
+      z-index: -2;
+    }
+
+    /* subtle scanline */
+    body::after{
+      content:"";
+      position: fixed;
+      inset:0;
+      pointer-events:none;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,.02),
+        rgba(255,255,255,.02) 1px,
+        transparent 1px,
+        transparent 6px
+      );
+      opacity: .12;
+      z-index:-1;
+    }
+
+    /* Neon glow helper */
+    .neon-glow{
+      box-shadow:
+        0 0 0 1px rgba(24,231,215,.22),
+        0 0 32px rgba(24,231,215,.16),
+        0 0 90px rgba(34,199,255,.10);
+    }
+
+    .panel{
+      background: color-mix(in srgb, var(--panel) 78%, transparent);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .muted{ color: var(--muted); }
+    .accent{ color: var(--neon); }
+
+    /* nav active */
+    .nav-link.active{
+      color: white;
+      text-shadow: 0 0 18px rgba(24,231,215,.30);
+    }
+
+    /* Mobile menu behavior */
+    .nav-menu{ display:none; }
+    .nav-menu.open{ display:flex; }
+    @media (min-width:768px){
+      .nav-menu{ display:flex !important; }
+    }
+
+    /* Reveal animation */
+    .reveal{ opacity:0; transform: translateY(14px); transition: .6s ease; }
+    .reveal.in{ opacity:1; transform: translateY(0); }
+  </style>
+</head>
+
+<body class="min-h-screen selection:bg-white/10 selection:text-white">
+  <!-- Top Nav -->
+  <header class="sticky top-0 z-50 border-b border-white/5 bg-black/15 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+      <a href="#home" class="flex items-center gap-2">
+        <span class="text-[18px] font-semibold tracking-tight text-[var(--neon)]">&lt;MAH/&gt;</span>
+        <span class="hidden text-xs text-white/50 sm:block">Data Engineering Portfolio</span>
+      </a>
+
+      <button class="nav-toggle neon-glow md:hidden grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-white/80"
+              type="button" aria-expanded="false" aria-controls="navMenu" aria-label="فتح القائمة">
+        <i data-lucide="menu" class="h-5 w-5"></i>
+      </button>
+
+      <nav id="navMenu" class="nav-menu panel absolute left-5 right-5 top-[70px] flex-col gap-2 p-3 md:static md:flex-row md:items-center md:gap-7 md:p-0 md:border-0 md:bg-transparent md:shadow-none md:backdrop-blur-0 md:rounded-none"
+           aria-label="التنقل">
+        <a class="nav-link rounded-xl px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5" href="#home">الرئيسية</a>
+        <a class="nav-link rounded-xl px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5" href="#about">About</a>
+        <a class="nav-link rounded-xl px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5" href="#skills">المهارات</a>
+        <a class="nav-link rounded-xl px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5" href="#projects">المشاريع</a>
+        <a class="nav-link rounded-xl px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5" href="#education">التعليم</a>
+        <a class="nav-link rounded-xl px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5" href="#experience">الخبرات</a>
+        <a class="nav-link rounded-xl px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5" href="#contact">تواصل</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="mx-auto max-w-6xl px-5 py-14 md:py-20">
+    <div class="grid items-center gap-12 md:grid-cols-2">
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 rounded-full border border-[rgba(24,231,215,.25)] bg-[rgba(24,231,215,.06)] px-4 py-2 text-xs text-[var(--neon)]">
+          <span class="opacity-90">&lt;Data Engineer (Trainee) /&gt;</span>
+          <span class="text-white/30">•</span>
+          <span class="text-white/60">DEPI • MCIT</span>
+        </div>
+
+        <h1 class="mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight md:text-6xl">
+          محمد علاء <br />
+          <span class="text-[var(--neon)]">حسين</span>
+        </h1>
+
+        <p class="mt-5 max-w-xl text-sm leading-7 text-white/60">
+          طالب بالفرقة الرابعة <span class="text-white/80">هندسة اتصالات وإلكترونيات</span>.
+          أركز على بناء <span class="text-white/80">Data Pipelines</span> و <span class="text-white/80">ETL/ELT</span>
+          وتحويل البيانات الخام إلى بيانات جاهزة للتحليلات والتقارير.
+        </p>
+
+        <!-- USP -->
+        <div class="mt-5 panel neon-glow p-4">
+          <p class="text-sm font-semibold text-white">
+            USP: <span class="text-[var(--neon)]">أبني بايبلاينز بيانات كأنها سيستم كامل</span>
+            — قابلة للتوسع، قابلة للمراقبة (Observability)، وجاهزة للإنتاج.
+          </p>
+          <p class="mt-2 text-xs text-white/55">
+            Systems mindset من الاتصالات + Data Engineering = حلول موثوقة بدل “سكربتات”.
+          </p>
+        </div>
+
+        <!-- Actions -->
+        <div class="mt-7 flex flex-wrap items-center gap-3">
+          <a class="neon-glow inline-flex items-center gap-2 rounded-xl bg-[var(--neon)] px-5 py-3 text-sm font-semibold text-black hover:brightness-110"
+             href="#projects">
+            <i data-lucide="sparkles" class="h-[18px] w-[18px]"></i>
+            شوف المشاريع
+          </a>
+
+          <a class="panel inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white/85 hover:bg-white/5"
+             href="cv.pdf" download>
+            <i data-lucide="download" class="h-[18px] w-[18px]"></i>
+            تحميل الـ CV
+          </a>
+
+          <a class="panel neon-glow grid h-11 w-11 place-items-center rounded-xl text-white/80 hover:bg-white/5"
+             href="https://www.linkedin.com/in/mohammed-alaa-engineer/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i data-lucide="linkedin" class="h-[18px] w-[18px]"></i>
+          </a>
+
+          <a class="panel neon-glow grid h-11 w-11 place-items-center rounded-xl text-white/80 hover:bg-white/5"
+             href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="GitHub (ضع لينكك)">
+            <i data-lucide="github" class="h-[18px] w-[18px]"></i>
+          </a>
+        </div>
+
+        <div class="mt-6 flex flex-wrap gap-3 text-xs text-white/55">
+          <span class="panel px-3 py-2">🎓 4th Year • Communications & Electronics</span>
+          <span class="panel px-3 py-2">⚡ Python • SQL • ETL</span>
+          <span class="panel px-3 py-2">📌 Available for Internships</span>
+        </div>
+      </div>
+
+      <!-- Right: Neon chip card -->
+      <div class="reveal flex justify-center md:justify-end">
+        <div class="relative">
+          <div class="panel neon-glow relative h-[340px] w-[340px] p-10 md:h-[380px] md:w-[380px]">
+            <div class="absolute left-[-10px] top-1/2 h-[2px] w-8 -translate-y-1/2 bg-[rgba(24,231,215,.25)]"></div>
+            <div class="absolute right-[-10px] top-1/2 h-[2px] w-8 -translate-y-1/2 bg-[rgba(24,231,215,.25)]"></div>
+
+            <div class="flex h-full items-center justify-center">
+              <div class="text-center">
+                <div class="text-5xl font-extrabold text-[var(--neon)]">MAH</div>
+                <div class="mt-2 text-xs tracking-widest text-white/45">build • ship • observe</div>
+
+                <div class="mt-8 grid grid-cols-2 gap-3 text-left text-xs">
+                  <div class="panel px-3 py-3">
+                    <div class="text-white/50">Focus</div>
+                    <div class="mt-1 font-semibold text-white">Pipelines</div>
+                  </div>
+                  <div class="panel px-3 py-3">
+                    <div class="text-white/50">Stack</div>
+                    <div class="mt-1 font-semibold text-white">Python + SQL</div>
+                  </div>
+                  <div class="panel px-3 py-3">
+                    <div class="text-white/50">Track</div>
+                    <div class="mt-1 font-semibold text-white">DEPI (MCIT)</div>
+                  </div>
+                  <div class="panel px-3 py-3">
+                    <div class="text-white/50">Goal</div>
+                    <div class="mt-1 font-semibold text-white">Prod-ready</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pointer-events-none absolute inset-[-22px] rounded-[28px] bg-[rgba(24,231,215,.06)] blur-2xl"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT (8 lines فقط) -->
+  <section id="about" class="mx-auto max-w-6xl px-5 py-10">
+    <div class="reveal panel p-7">
+      <div class="flex items-center justify-between gap-4 flex-wrap">
+        <h2 class="text-xl font-semibold">About (8 سطور)</h2>
+        <div class="text-xs text-white/50">مختصر • قوي • مباشر</div>
+      </div>
+
+      <ol class="mt-5 space-y-2 text-sm text-white/70 leading-7">
+        <li>1) أنا <span class="text-white">محمد علاء حسين</span>، طالب الفرقة الرابعة <span class="text-white">هندسة اتصالات وإلكترونيات</span> ومهتم بهندسة البيانات.</li>
+        <li>2) أقدّم <span class="text-white">Data Engineering</span>: بناء <span class="text-white">ETL/ELT Pipelines</span> وتحضير البيانات لتكون جاهزة للتحليل والتقارير.</li>
+        <li>3) أستهدف فرق المنتجات والتحليلات التي تريد تحويل البيانات الخام إلى <span class="text-white">Data Assets</span> موثوقة وسريعة.</li>
+        <li>4) <span class="text-[var(--neon)] font-semibold">USP:</span> أجمع بين عقلية السيستمات من الاتصالات + هندسة البيانات لأبني حلول <span class="text-white">Scalable & Observable</span>.</li>
+        <li>5) أدرس حاليًا منحة <span class="text-white">Data Engineering (DEPI)</span> التابعة لوزارة الاتصالات وتكنولوجيا المعلومات — وأتعامل معها كخبرة عملية بمشاريع تطبيقية.</li>
+        <li>6) أهتم بالجودة: <span class="text-white">Data Quality</span> + توثيق + تتبّع أخطاء (Logging) لضمان استقرار البايبلاين.</li>
+        <li>7) تقنيًا أركز على: <span class="text-white">Python, SQL, Data Modeling, Orchestration Basics</span> مع تسليم منظم.</li>
+        <li>8) لو محتاج Pipeline/ETL أو تجهيز Data لمشروعك—تواصل معي عبر لينكدإن: <span class="text-white">mohammed-alaa-engineer</span>.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="mx-auto max-w-6xl px-5 py-10">
+    <div class="reveal">
+      <h2 class="text-xl font-semibold">المهارات</h2>
+      <p class="mt-2 text-sm muted">رتّبتها كـ “Stack” عشان تبان احترافية.</p>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        <div class="panel p-6">
+          <div class="flex items-center gap-2 text-white">
+            <i data-lucide="code-2" class="h-5 w-5 text-[var(--neon)]"></i>
+            <h3 class="font-semibold">Programming</h3>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs">
+            <span class="panel px-3 py-2">Python</span>
+            <span class="panel px-3 py-2">SQL</span>
+            <span class="panel px-3 py-2">Git/GitHub</span>
+          </div>
+        </div>
+
+        <div class="panel p-6">
+          <div class="flex items-center gap-2 text-white">
+            <i data-lucide="layers" class="h-5 w-5 text-[var(--neon)]"></i>
+            <h3 class="font-semibold">Data Engineering</h3>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs">
+            <span class="panel px-3 py-2">ETL / ELT</span>
+            <span class="panel px-3 py-2">Data Modeling</span>
+            <span class="panel px-3 py-2">Data Quality</span>
+            <span class="panel px-3 py-2">Logging</span>
+            <span class="panel px-3 py-2">Orchestration (Basics)</span>
+          </div>
+        </div>
+
+        <div class="panel p-6">
+          <div class="flex items-center gap-2 text-white">
+            <i data-lucide="database" class="h-5 w-5 text-[var(--neon)]"></i>
+            <h3 class="font-semibold">Databases & Tools</h3>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs">
+            <span class="panel px-3 py-2">PostgreSQL / MySQL</span>
+            <span class="panel px-3 py-2">Docker (اختياري)</span>
+            <span class="panel px-3 py-2">Airflow (اختياري)</span>
+            <span class="panel px-3 py-2">Cloud Basics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="mx-auto max-w-6xl px-5 py-10">
+    <div class="reveal">
+      <div class="flex items-end justify-between gap-4 flex-wrap">
+        <div>
+          <h2 class="text-xl font-semibold">المشاريع</h2>
+          <p class="mt-2 text-sm muted">اكتب كل مشروع: Problem → Your Role → Solution → Outcome.</p>
+        </div>
+        <span class="text-xs text-white/45">Tip: 3 مشاريع قوية أفضل من 10 متوسطين</span>
+      </div>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        <!-- Project Card 1 -->
+        <article class="panel p-6 hover:neon-glow transition">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">End-to-End ETL Pipeline</h3>
+            <span class="text-[10px] text-white/55 border border-white/10 rounded-full px-2 py-1">DEPI</span>
+          </div>
+          <p class="mt-3 text-sm text-white/65 leading-7">
+            بناء Pipeline لجلب بيانات خام وتنظيفها وتحويلها وتحميلها في قاعدة بيانات بشكل منظم.
+          </p>
+          <ul class="mt-4 space-y-2 text-xs text-white/60">
+            <li>• Role: Data Engineer (Trainee)</li>
+            <li>• Stack: Python • SQL</li>
+            <li>• Outcome: Dataset جاهز للتحليلات + تنظيم Schema</li>
+          </ul>
+          <div class="mt-5 flex gap-2 text-xs">
+            <a class="panel px-3 py-2 hover:bg-white/5" href="#" target="_blank" rel="noopener">GitHub</a>
+            <a class="panel px-3 py-2 hover:bg-white/5" href="#" target="_blank" rel="noopener">Docs</a>
+          </div>
+        </article>
+
+        <!-- Project Card 2 -->
+        <article class="panel p-6 hover:neon-glow transition">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">Analytics Data Model</h3>
+            <span class="text-[10px] text-white/55 border border-white/10 rounded-full px-2 py-1">Modeling</span>
+          </div>
+          <p class="mt-3 text-sm text-white/65 leading-7">
+            تصميم نموذج بيانات (Fact/Dim) لدعم تقارير ولوحات متابعة قابلة للتوسع.
+          </p>
+          <ul class="mt-4 space-y-2 text-xs text-white/60">
+            <li>• Focus: Star Schema • Clean Definitions</li>
+            <li>• Stack: SQL</li>
+            <li>• Outcome: Queries أسرع + Consistency أعلى</li>
+          </ul>
+          <div class="mt-5 flex gap-2 text-xs">
+            <a class="panel px-3 py-2 hover:bg-white/5" href="#" target="_blank" rel="noopener">SQL</a>
+            <a class="panel px-3 py-2 hover:bg-white/5" href="#" target="_blank" rel="noopener">Diagram</a>
+          </div>
+        </article>
+
+        <!-- Project Card 3 -->
+        <article class="panel p-6 hover:neon-glow transition">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">Data Quality Mini-System</h3>
+            <span class="text-[10px] text-white/55 border border-white/10 rounded-full px-2 py-1">Quality</span>
+          </div>
+          <p class="mt-3 text-sm text-white/65 leading-7">
+            قواعد تحقق للبيانات + Logging لتقليل الأعطال وتحسين الاعتمادية.
+          </p>
+          <ul class="mt-4 space-y-2 text-xs text-white/60">
+            <li>• Focus: Validation • Logging</li>
+            <li>• Stack: Python</li>
+            <li>• Outcome: أخطاء أقل + تتبّع أفضل للمشاكل</li>
+          </ul>
+          <div class="mt-5 flex gap-2 text-xs">
+            <a class="panel px-3 py-2 hover:bg-white/5" href="#" target="_blank" rel="noopener">Repo</a>
+            <a class="panel px-3 py-2 hover:bg-white/5" href="#" target="_blank" rel="noopener">Readme</a>
+          </div>
+        </article>
+      </div>
+
+      <p class="mt-4 text-xs text-white/45">
+        * عدّل لينكات GitHub/Docs لما تجهز الريبو بتاع كل مشروع.
+      </p>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="mx-auto max-w-6xl px-5 py-10">
+    <div class="reveal panel p-7">
+      <div class="flex items-center gap-2">
+        <i data-lucide="graduation-cap" class="h-5 w-5 text-[var(--neon)]"></i>
+        <h2 class="text-xl font-semibold">التعليم</h2>
+      </div>
+      <p class="mt-3 text-sm text-white/70 leading-7">
+        <span class="text-white font-semibold">هندسة اتصالات وإلكترونيات</span> — الفرقة الرابعة.
+        خلفية قوية في التفكير السيستمي والتحليل الهندسي وحل المشكلات.
+      </p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="mx-auto max-w-6xl px-5 py-10">
+    <div class="reveal">
+      <h2 class="text-xl font-semibold">الخبرات</h2>
+      <p class="mt-2 text-sm muted">اعتبرنا DEPI خبرة عملية كما طلبت.</p>
+
+      <div class="mt-6 panel p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap">
+          <div>
+            <h3 class="font-semibold text-white">DEPI — Data Engineering Track (MCIT)</h3>
+            <p class="mt-1 text-xs text-white/50">Ministry of Communications & Information Technology</p>
+          </div>
+          <span class="text-[10px] text-white/55 border border-white/10 rounded-full px-3 py-2">Hands-on Training</span>
+        </div>
+
+        <ul class="mt-5 space-y-2 text-sm text-white/70">
+          <li>• تنفيذ Pipelines وتطبيق مفاهيم ETL/ELT على بيانات واقعية وتدريبات عملية.</li>
+          <li>• تصميم Data Models مناسبة للتحليلات وتوثيق واضح للـ Schema.</li>
+          <li>• تطبيق مبادئ الجودة والتتبّع (Validation + Logging) لتحسين الاعتمادية.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="mx-auto max-w-6xl px-5 py-10">
+    <div class="reveal panel p-7">
+      <div class="flex items-center justify-between gap-4 flex-wrap">
+        <div>
+          <h2 class="text-xl font-semibold">تواصل</h2>
+          <p class="mt-2 text-sm muted">أفضل طريقة: لينكدإن + إيميل.</p>
+        </div>
+        <span class="text-xs text-white/45">Open for internships / junior roles</span>
+      </div>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        <div class="panel p-5">
+          <div class="flex items-center gap-2 text-white">
+            <i data-lucide="mail" class="h-5 w-5 text-[var(--neon)]"></i>
+            <h3 class="font-semibold">Email</h3>
+          </div>
+          <p class="mt-2 text-sm text-white/70" id="emailText">your-email@example.com</p>
+          <button id="copyEmail" class="mt-3 panel px-3 py-2 text-xs hover:bg-white/5">نسخ الإيميل</button>
+          <p id="copyMsg" class="mt-2 text-xs text-white/45 hidden">تم النسخ ✅</p>
+        </div>
+
+        <a class="panel p-5 hover:neon-glow transition" href="https://www.linkedin.com/in/mohammed-alaa-engineer/" target="_blank" rel="noopener">
+          <div class="flex items-center gap-2 text-white">
+            <i data-lucide="linkedin" class="h-5 w-5 text-[var(--neon)]"></i>
+            <h3 class="font-semibold">LinkedIn</h3>
+          </div>
+          <p class="mt-2 text-sm text-white/70">mohammed-alaa-engineer</p>
+          <p class="mt-2 text-xs text-white/45">اضغط لفتح لينكدإن</p>
+        </a>
+
+        <a class="panel p-5 hover:neon-glow transition" href="https://github.com/USERNAME" target="_blank" rel="noopener">
+          <div class="flex items-center gap-2 text-white">
+            <i data-lucide="github" class="h-5 w-5 text-[var(--neon)]"></i>
+            <h3 class="font-semibold">GitHub</h3>
+          </div>
+          <p class="mt-2 text-sm text-white/70">ضع لينك حسابك هنا</p>
+          <p class="mt-2 text-xs text-white/45">اضغط لفتح GitHub</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="mx-auto max-w-6xl px-5 py-10 text-xs text-white/45">
+    © <span id="year"></span> محمد علاء حسين • Built with Neon UI
+  </footer>
+
+  <script>
+    // icons
+    lucide.createIcons();
+
+    // year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile nav (زي اللي كنت بتسأل عليه)
+    const toggleBtn = document.querySelector(".nav-toggle");
+    const menu = document.querySelector("#navMenu");
+
+    if (toggleBtn && menu) {
+      toggleBtn.addEventListener("click", () => {
+        const isOpen = menu.classList.toggle("open");
+        toggleBtn.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      menu.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", () => {
+          if (menu.classList.contains("open")) {
+            menu.classList.remove("open");
+            toggleBtn.setAttribute("aria-expanded", "false");
+          }
+        });
+      });
+    }
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add("in");
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+
+    // Scrollspy
+    const links = document.querySelectorAll(".nav-link");
+    const sections = ["home","about","skills","projects","education","experience","contact"].map(id => document.getElementById(id));
+
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        links.forEach(l => l.classList.remove("active"));
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add("active");
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+
+    sections.filter(Boolean).forEach(s => spy.observe(s));
+
+    // Copy email
+    const copyBtn = document.getElementById("copyEmail");
+    const emailText = document.getElementById("emailText");
+    const msg = document.getElementById("copyMsg");
+
+    if (copyBtn && emailText) {
+      copyBtn.addEventListener("click", async () => {
+        try{
+          await navigator.clipboard.writeText(emailText.textContent.trim());
+          msg.classList.remove("hidden");
+          setTimeout(()=> msg.classList.add("hidden"), 1200);
+        }catch(e){}
+      });
+    }
+  </script>
+</body>
+</html>
